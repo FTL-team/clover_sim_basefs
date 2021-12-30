@@ -7,4 +7,4 @@ fi
 
 set -ex
 
-debootstrap --include=systemd-container --components=main,universe,multiverse focal base http://archive.ubuntu.com/ubuntu
+debootstrap --include=systemd-container --components=main,universe,multiverse focal base http://archive.ubuntu.com/ubuntu | tee

@@ -57,7 +57,7 @@ catkin_make
 
 echo "=== Expose examples"
 ln -s ${HOME}/catkin_ws/src/clover/clover/examples ${HOME}/
-[[ -d ${HOME}/examples ]] # test symlink is valid
+# [[ -d ${HOME}/examples ]] # test symlink is valid
 
 echo "=== Install npm and building documentation"
 cd ${HOME}

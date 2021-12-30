@@ -15,4 +15,4 @@ $SCRIPTPATH/bootstrap.sh
 # Copy scripts to the chroot
 cp -r $SCRIPTPATH ./base/
 
-systemd-nspawn -D ./base /bin/bash ./builder/base.sh
+systemd-nspawn -D ./base /bin/bash -c "/bin/bash ./builder/base.sh | tee"
