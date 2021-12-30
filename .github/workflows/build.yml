@@ -1,0 +1,38 @@
+name: Build
+
+on: 
+  push:
+  pull_request:
+  release:
+    types: [created, edited, released]
+
+jobs:
+  base:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y systemd systemd-container debootstrap
+
+      - name: Create build dir
+        run: mkdir build
+
+      - name: Build basefs
+        working-directory: build
+        run: sudo ../builder/build.sh
+
+      - name: Compressing
+        working-directory: build
+        run: |
+          sudo tar -czvf base.tar.gz base
+          sudo chmod a+rw base.tar.gz
+
+      - name: Upload tar
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: base.tar.gz
+          path: build/base.tar.gz
+  
