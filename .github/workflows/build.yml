@@ -16,6 +16,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y systemd systemd-container debootstrap
+          sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf
 
       - name: Create build dir
         run: mkdir build
