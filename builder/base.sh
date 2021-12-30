@@ -2,6 +2,10 @@
 
 set -ex
 
+rm /etc/resolv.conf
+echo "nameserver 1.0.0.1" > /etc/resolv.conf
+echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+
 if id clover &>/dev/null; then
   echo 'clover user found, removing'
   sudo rm -rf /home/clover
