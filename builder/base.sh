@@ -24,12 +24,18 @@ sh -c "echo 'clover ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
 
 echo "=== Install base packages"
 apt update
-apt install -y \
+apt install -y nano \
   apt-transport-https \
   ca-certificates \
   curl \
   gnupg-agent \
   software-properties-common
+
+echo "=== Install SSH server"
+apt install openssh-server -y
+echo "Port 2222" >> /etc/ssh/sshd_confid
+systemctl enable ssh
+
 
 echo "=== Fix rosout trying to allocate all memory issues"
 cat << EOF > /etc/security/limits.d/30-nofilelimit.conf
