@@ -6,6 +6,9 @@ rm /etc/resolv.conf
 echo "nameserver 1.0.0.1" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 
+echo "clover_sim" > /etc/hostname
+echo "127.0.0.1 clover_sim" >> /etc/hosts
+
 if id clover &>/dev/null; then
   echo 'clover user found, removing'
   sudo rm -rf /home/clover
