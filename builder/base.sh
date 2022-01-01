@@ -6,13 +6,13 @@ rm /etc/resolv.conf
 echo "nameserver 1.0.0.1" > /etc/resolv.conf
 echo "nameserver 1.1.1.1" >> /etc/resolv.conf
 
-echo "clover_sim" > /etc/hostname
-echo "127.0.0.1 clover_sim" >> /etc/hosts
+echo "cloversim" > /etc/hostname
+echo "127.0.0.1	cloversim" >> /etc/hosts
 
 if id clover &>/dev/null; then
-  echo 'clover user found, removing'
-  sudo rm -rf /home/clover
-  sudo deluser clover
+	echo 'clover user found, removing'
+	sudo rm -rf /home/clover
+	sudo deluser clover
 fi
 
 echo "=== Creating clover user"
@@ -25,11 +25,11 @@ sh -c "echo 'clover ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers"
 echo "=== Install base packages"
 apt update
 apt install -y nano \
-  apt-transport-https \
-  ca-certificates \
-  curl \
-  gnupg-agent \
-  software-properties-common
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg-agent \
+	software-properties-common
 
 echo "=== Install SSH server"
 apt install openssh-server -y
