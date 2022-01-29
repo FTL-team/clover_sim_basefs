@@ -33,7 +33,6 @@ apt install -y nano \
 
 echo "=== Install SSH server"
 apt install openssh-server -y
-echo "Port 2222" >> /etc/ssh/sshd_confid
 systemctl enable ssh
 
 

@@ -16,6 +16,7 @@ cd ~/catkin_ws
 catkin_make
 
 echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
+echo "export ROS_HOSTNAME=`hostname`" >> ~/.bashrc
 source ~/catkin_ws/devel/setup.bash
 
 echo "=== Get clover sources"
@@ -53,6 +54,8 @@ sudo -E sh -c '/opt/ros/noetic/lib/mavros/install_geographiclib_datasets.sh'
 
 echo "=== Build the workspace"
 cd ~/catkin_ws
+cp -r /files/cloversim ~/catkin_ws/src/
+sudo chown clover ~/catkin_ws/src/cloversim
 catkin_make
 
 echo "=== Expose examples"
