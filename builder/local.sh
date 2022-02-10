@@ -54,8 +54,6 @@ sudo -E sh -c '/opt/ros/noetic/lib/mavros/install_geographiclib_datasets.sh'
 
 echo "=== Build the workspace"
 cd ~/catkin_ws
-cp -r /files/cloversim ~/catkin_ws/src/
-sudo chown clover ~/catkin_ws/src/cloversim
 catkin_make
 
 echo "=== Expose examples"
