@@ -93,5 +93,5 @@ sudo -E sh -c "sed -i 's/SymLink Off/SymLink On/' /etc/monkey/monkey.conf"
 sudo cp ${HOME}/catkin_ws/src/clover/builder/assets/monkey.service /etc/systemd/system/monkey.service
 sudo systemctl enable monkey
 
-
-
+echo "=== Install additional packages"
+pip3 install --user qrcode pyzbar
