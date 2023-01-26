@@ -29,15 +29,9 @@ jobs:
         working-directory: build
         run: sudo ../builder/build.sh
 
-      - name: Compressing
-        working-directory: build
-        run: |
-          sudo tar -czvf base.tar.gz base
-          sudo chmod a+rw base.tar.gz
-
       - name: Upload tar
         uses: actions/upload-artifact@v2.2.0
         with:
-          name: base.tar.gz
-          path: build/base.tar.gz
+          name: base.sqsh
+          path: build/base.sqsh
   

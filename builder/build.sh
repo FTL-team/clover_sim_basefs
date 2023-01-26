@@ -17,3 +17,7 @@ $SCRIPTPATH/bootstrap.sh
 cp -r $SCRIPTPATH ./base/
 
 systemd-nspawn --bind-ro=$FILESPATH:/files  -D ./base /bin/bash -c "/bin/bash ./builder/base.sh | tee"
+
+cd base
+mksquashfs . ../base.sqsh
+cd ..

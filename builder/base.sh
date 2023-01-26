@@ -34,6 +34,7 @@ apt install -y nano \
 echo "=== Install SSH server"
 apt install openssh-server -y
 systemctl enable ssh
+systemctl disable gdm
 
 
 echo "=== Fix rosout trying to allocate all memory issues"
