@@ -34,7 +34,6 @@ apt install -y nano \
 echo "=== Install SSH server"
 apt install openssh-server -y
 systemctl enable ssh
-systemctl disable gdm
 
 
 echo "=== Fix rosout trying to allocate all memory issues"
@@ -69,6 +68,7 @@ echo "=== Install additional packages dependencies"
 apt install -y sshfs gvfs-fuse gvfs-backends python3-opencv byobu ipython3 byobu nmap lsof tmux vim ros-noetic-rqt-multiplot
 
 echo "=== Cleaning up"
+apt-get -y remove gdm3 gnome-shell
 apt-get -y autoremove
 apt-get -y autoclean
 apt-get -y clean
