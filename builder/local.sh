@@ -21,7 +21,7 @@ source ~/catkin_ws/devel/setup.bash
 
 echo "=== Get clover sources"
 cd ~/catkin_ws/src
-git clone --depth 1 https://github.com/CopterExpress/clover
+git clone --depth 1 --branch v0.23  https://github.com/CopterExpress/clover
 git clone --depth 1 https://github.com/CopterExpress/ros_led
 git clone --depth 1 https://github.com/ethz-asl/mav_comm
 
