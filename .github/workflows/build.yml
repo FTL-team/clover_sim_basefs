@@ -29,9 +29,20 @@ jobs:
         working-directory: build
         run: sudo ../builder/build.sh
 
-      - name: Upload tar
+      - name: Upload to actions asset
         uses: actions/upload-artifact@v2.2.0
         with:
           name: base.sqsh
           path: build/base.sqsh
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        if: ${{ github.event_name == 'release' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }} 
+          asset_path: ./build/base.sqsh
+          asset_name: base.sqsh
+          asset_content_type: application/octet-stream
   
