@@ -58,8 +58,44 @@ apt install -y curl
 echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add -
 apt update
-apt install -y python3-pip python3-rosdep python3-rosinstall-generator python3-wstool build-essential ros-noetic-desktop
+apt install -y python3-pip python3-rosdep python3-rosinstall-generator python3-wstool build-essential ros-noetic-desktop imagemagick libjansson-dev
 rosdep init
+
+echo "=== Install butterfly terminal"
+/usr/bin/python3 -m pip install butterfly[systemd]
+cat > /etc/systemd/system/butterfly.service <<EOF
+[Unit]
+Description=Butterfly Terminal Server
+
+[Service]
+ExecStart=/usr/local/bin/butterfly.server.py --unsecure --host=0.0.0.0
+User=clover
+EOF
+cat > /etc/systemd/system/butterfly.socket <<EOF
+[Socket]
+ListenStream=57575
+
+[Install]
+WantedBy=sockets.target
+EOF
+systemctl enable butterfly.socket
+
+echo "=== Install ttyd terminal"
+wget https://github.com/tsl0922/ttyd/releases/download/1.7.3/ttyd.x86_64 -O /usr/bin/ttyd
+chmod +x /usr/bin/ttyd
+cat > /etc/systemd/system/ttyd.service <<EOF
+[Unit]
+Description=Ttyd Terminal Server
+
+[Service]
+ExecStart=ttyd -p 7776 bash
+User=clover
+WorkingDirectory=/home/clover
+
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl enable ttyd.service
 
 echo "=== Run local install script"
 sudo -u clover /bin/bash /builder/local.sh
