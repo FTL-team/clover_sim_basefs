@@ -100,5 +100,13 @@ sudo -E sh -c "sed -i 's/SymLink Off/SymLink On/' /etc/monkey/monkey.conf"
 sudo cp ${HOME}/catkin_ws/src/clover/builder/assets/monkey.service /etc/systemd/system/monkey.service
 sudo systemctl enable monkey
 
+echo "=== Install ide"
+cd /tmp
+wget https://github.com/FTL-team/cloverIDE/releases/latest/download/advancedClover.deb
+sudo dpkg -i advancedClover.deb
+sudo systemctl enable cloveride
+sudo apt install -y clangd
+pip3 install autopep8
+
 echo "=== Install additional packages"
 pip3 install --user qrcode pyzbar
